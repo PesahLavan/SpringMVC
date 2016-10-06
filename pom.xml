@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mince</groupId>
+    <artifactId>training</artifactId>
+    <name>TestMVC</name>
+    <packaging>war</packaging>
+    <version>1.0.0-BUILD-SNAPSHOT</version>
+    <properties>
+        <java-version>1.8</java-version>
+        <org.springframework-version>4.3.3.RELEASE</org.springframework-version>
+        <org.aspectj-version>1.8.0</org.aspectj-version>
+        <org.slf4j-version>1.7.7</org.slf4j-version>
+    </properties>
+    <dependencies>
+
+    </dependencies>
+</project>
