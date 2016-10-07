@@ -41,10 +41,15 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
-			<bean class="com.mince.training.interceptors.TimeInterceptor" />
+			<bean class="com.mince.training.interceptors.CheckUserInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+	<bean id="messageSource"
+		  class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/locales/messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
 
 
 

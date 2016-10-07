@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,17 +27,19 @@ public class LoginController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView main(HttpSession session) {
+	public ModelAndView main(@ModelAttribute User user, HttpSession session) {
+        user.setName("usernamevalue");
 		return new ModelAndView("login", "user", new User());
 	}
 
 	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
-	public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+	public String checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, ModelMap modelMap) {
+        System.out.println(model);
+        System.out.println(modelMap);
+
         if (bindingResult.hasErrors()) {
             return "login";
         }
-
-        model.addAttribute("user", user);
 
         return "main";
 	}
