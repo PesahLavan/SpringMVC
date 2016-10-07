@@ -1,9 +1,15 @@
 package com.mince.training.objects;
 
+import javax.validation.constraints.Size;
+
 public class User {
+
+    @Size(min = 6, message = "The name must be more than 6 characters")
     private String name;
 
+    @Size(min = 5, max = 10, message = "The password must be between 5 and 10 characters")
     private String password;
+
 
     private boolean admin;
 
