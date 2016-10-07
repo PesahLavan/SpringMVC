@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -26,9 +24,6 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView main(HttpSession session) {
-
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
-
 		return new ModelAndView("login", "user", new User());
 	}
 
@@ -37,5 +32,9 @@ public class LoginController {
 		return new ModelAndView("main", "user", user);
 	}
 
+	@RequestMapping(value = "/failed", method = RequestMethod.GET)
+	public ModelAndView failed() {
+		return new ModelAndView("login-failed", "message", "Login failed!");
+	}
 
 }
