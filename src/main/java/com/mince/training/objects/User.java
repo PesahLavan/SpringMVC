@@ -1,7 +1,9 @@
 package com.mince.training.objects;
 
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class User {
 
     @Size(min = 6, message = "The name must be more than 6 characters")
@@ -36,4 +38,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
