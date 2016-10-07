@@ -6,10 +6,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class User {
 
-    @Size(min = 6, message = "The name must be more than 6 characters")
+    public User() {
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    @Size(min = 6, message = "{name.size.error}")
     private String name;
 
-    @Size(min = 5, max = 10, message = "The password must be between 5 and 10 characters")
+    @Size(min = 5, max = 10, message = "{password.size.error}")
     private String password;
 
 
