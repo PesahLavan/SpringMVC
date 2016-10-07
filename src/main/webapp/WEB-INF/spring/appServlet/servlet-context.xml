@@ -41,7 +41,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
-			<bean class="com.mince.training.interceptors.CheckUserInterceptor" />
+			<bean class="com.mince.training.interceptors.TimeInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
