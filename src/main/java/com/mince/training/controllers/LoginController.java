@@ -8,51 +8,71 @@ import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
+@SessionAttributes("user")
 public class LoginController {
 
     @Autowired
     private MessageSource messageSource;
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
+
+    @ModelAttribute
+    public User createNewUser(){
+        return new User("usernamevalue");
+    }
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView main(@ModelAttribute User user, HttpSession session, Locale locale) {
-        System.out.println(locale.getDisplayLanguage());
-        System.out.println(messageSource.getMessage("locale",new String[] {locale.getDisplayName(locale)}, locale));
-        user.setName("usernamevalue");
-		return new ModelAndView("login", "user", new User());
-	}
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String main(@ModelAttribute User user, HttpSession session, Locale locale) {
+        logger.info(locale.getDisplayLanguage());
+        logger.info(messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
+        return "login";
+    }
 
-	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
-	public ModelAndView checkUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Locale locale) {
+    @RequestMapping(value = "/check-user", method = RequestMethod.POST)
+    public String checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("locale", messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("login");
-        } else {
-            modelAndView.setViewName("main");
+        if (!bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("locale", messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
+            return "redirect:/mainpage";
         }
 
-        return modelAndView;
-	}
+        return "login";
+    }
 
-	@RequestMapping(value = "/failed", method = RequestMethod.GET)
+    @RequestMapping(value = "/mainpage", method = RequestMethod.GET)
+    public String goMainPage(HttpServletRequest request) {
+
+        Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
+        if (map != null) {
+            logger.info("redirect!");
+        } else {
+            logger.info("update!");
+        }
+
+        return "main";
+    }
+
+    @RequestMapping(value = "/failed", method = RequestMethod.GET)
 	public ModelAndView failed() {
 		return new ModelAndView("login-failed", "message", "Login failed!");
 	}

@@ -9,9 +9,9 @@ public class User {
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(String name) {
+        super();
         this.name = name;
-        this.password = password;
     }
 
     @Size(min = 6, message = "{name.size.error}")
