@@ -24,15 +24,20 @@
         in the /WEB-INF/views directory -->
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--<property name="order" value="2"/>-->
         <property name="prefix" value="/WEB-INF/views/" />
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!--<bean id="viewPDFResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">-->
+        <!--<property name="order" value="1"/>-->
+        <!--<property name="basename" value="views"/>-->
+    <!--</bean>-->
 
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*" />
-            <!-- <bean class="ru.javabegin.training.interceptors.TimeInterceptor"/> -->
+            <!-- <bean class="com.mince.training.interceptors.TimeInterceptor"/> -->
             <ref bean="localeChangeInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>

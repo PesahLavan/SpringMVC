@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 @Controller
 @SessionAttributes("filename")
 public class FileController {
@@ -68,7 +69,7 @@ public class FileController {
             modelAndView.setView(redirectView);
             modelAndView.addObject("filename", fileName);
 
-            throw new IOException("Folder not found!");
+            // throw new IOException("Folder not found!");
             // throw new BadFileNameException("Bad filename:" + fileName);
 
         }

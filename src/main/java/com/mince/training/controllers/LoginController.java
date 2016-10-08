@@ -25,6 +25,7 @@ import java.util.Map;
 /**
  * Handles requests for the application home page.
  */
+
 @Controller
 @SessionAttributes("user")
 public class LoginController {
@@ -40,21 +41,16 @@ public class LoginController {
     @Autowired
     private MessageSource messageSource;
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @ModelAttribute
-    public User createNewUser(){
+    public User createNewUser() {
         return new User("usernamevalue");
     }
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 
     @RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = { "text/html; charset=UTF-8" })
     public @ResponseBody
     String checkStrength(@RequestParam String password, Locale locale) {
-
         String result = "<span style=\"color:%s; font-weight:bold;\">%s</span>";
 
         if (password.length() >= WEAK_STRENGTH & password.length() < FEAR_STRENGTH) {
@@ -66,6 +62,7 @@ public class LoginController {
         }
         return "";
     }
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(@ModelAttribute User user, HttpSession session, Locale locale) {
         logger.info(locale.getDisplayLanguage());
@@ -75,6 +72,7 @@ public class LoginController {
 
     @RequestMapping(value = "/check-user", method = RequestMethod.POST)
     public ModelAndView checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
+
         ModelAndView modelAndView = new ModelAndView();
         if (!bindingResult.hasErrors()) {
             RedirectView redirectView = new RedirectView("mainpage");
@@ -102,12 +100,18 @@ public class LoginController {
         return "main";
     }
 
-    @RequestMapping(value = "/failed", method = RequestMethod.GET)
-	public ModelAndView failed() {
-		return new ModelAndView("login-failed", "message", "Login failed!");
-	}
+    @RequestMapping(value = "/downloadPDF", method = RequestMethod.GET)
+    public ModelAndView downloadPDF() {
 
-    @RequestMapping(value = "/get-json-user/{name}/{admin}", method = RequestMethod.GET, produces = "application/xml")
+        return new ModelAndView("pdfView");
+    }
+
+    @RequestMapping(value = "/failed", method = RequestMethod.GET)
+    public ModelAndView failed() {
+        return new ModelAndView("login-failed", "message", "Login failed!");
+    }
+
+    @RequestMapping(value = "/get-json-user/{name}/{admin}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public User getJsonUser(@PathVariable("name") String name, @PathVariable("admin") boolean admin) {
         User user = new User();
@@ -121,4 +125,5 @@ public class LoginController {
         logger.info(user.getName());
         return new ResponseEntity<String>(HttpStatus.OK);
     }
+
 }
