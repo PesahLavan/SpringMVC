@@ -29,6 +29,14 @@ import java.util.Map;
 @SessionAttributes("user")
 public class LoginController {
 
+    private static final int WEAK_STRENGTH = 1;
+    private static final int FEAR_STRENGTH = 5;
+    private static final int STRONG_STRENGTH = 7;
+
+    private static final String WEAK_COLOR = "#FF0000";
+    private static final String FEAR_COLOR = "#FF9900";
+    private static final String STRONG_COLOR = "#0099CC";
+
     @Autowired
     private MessageSource messageSource;
 
@@ -42,6 +50,23 @@ public class LoginController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+
+    @RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = { "text/html; charset=UTF-8" })
+    public @ResponseBody
+    String checkStrength(@RequestParam String password, Locale locale) {
+
+        String result = "<span style=\"color:%s; font-weight:bold;\">%s</span>";
+
+        if (password.length() >= WEAK_STRENGTH & password.length() < FEAR_STRENGTH) {
+            // добавить локализацию
+            return String.format(result, WEAK_COLOR, messageSource.getMessage("low",null, locale));
+        } else if (password.length() >= FEAR_STRENGTH & password.length() < STRONG_STRENGTH) {
+            return String.format(result, FEAR_COLOR, messageSource.getMessage("medium",null, locale));
+        } else if (password.length() >= STRONG_STRENGTH) {
+            return String.format(result, STRONG_COLOR, messageSource.getMessage("strong",null, locale));
+        }
+        return "";
+    }
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String main(@ModelAttribute User user, HttpSession session, Locale locale) {
         logger.info(locale.getDisplayLanguage());
