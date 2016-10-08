@@ -1,4 +1,4 @@
-package com.mince.training.exceptions;
+package com.pesahlavan.training.exceptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

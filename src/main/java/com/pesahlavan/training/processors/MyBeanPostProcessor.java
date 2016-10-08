@@ -1,4 +1,4 @@
-package com.mince.training.processors;
+package com.pesahlavan.training.processors;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

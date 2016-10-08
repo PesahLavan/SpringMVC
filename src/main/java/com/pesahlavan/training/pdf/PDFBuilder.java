@@ -1,9 +1,9 @@
-package com.mince.training.pdf;
+package com.pesahlavan.training.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.mince.training.objects.User;
+import com.pesahlavan.training.objects.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

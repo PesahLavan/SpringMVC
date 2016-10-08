@@ -1,4 +1,4 @@
-package com.mince.training.objects;
+package com.pesahlavan.training.objects;
 
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;

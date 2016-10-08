@@ -1,4 +1,4 @@
-package com.mince.training.exceptions;
+package com.pesahlavan.training.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

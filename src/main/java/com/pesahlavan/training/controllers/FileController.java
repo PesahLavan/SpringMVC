@@ -1,8 +1,8 @@
-package com.mince.training.controllers;
+package com.pesahlavan.training.controllers;
 
-import com.mince.training.exceptions.BadFileNameException;
-import com.mince.training.objects.UploadedFile;
-import com.mince.training.validators.FileValidator;
+import com.pesahlavan.training.exceptions.BadFileNameException;
+import com.pesahlavan.training.objects.UploadedFile;
+import com.pesahlavan.training.validators.FileValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

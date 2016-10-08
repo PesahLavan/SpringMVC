@@ -1,6 +1,6 @@
-package com.mince.training.controllers;
+package com.pesahlavan.training.controllers;
 
-import com.mince.training.objects.User;
+import com.pesahlavan.training.objects.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

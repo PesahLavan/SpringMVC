@@ -1,4 +1,4 @@
-package com.mince.training.interceptors;
+package com.pesahlavan.training.interceptors;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

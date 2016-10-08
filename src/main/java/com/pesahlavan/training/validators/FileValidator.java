@@ -1,6 +1,6 @@
-package com.mince.training.validators;
+package com.pesahlavan.training.validators;
 
-import com.mince.training.objects.UploadedFile;
+import com.pesahlavan.training.objects.UploadedFile;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

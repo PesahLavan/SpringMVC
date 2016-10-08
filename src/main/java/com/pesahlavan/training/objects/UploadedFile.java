@@ -1,4 +1,4 @@
-package com.mince.training.objects;
+package com.pesahlavan.training.objects;
 
 import org.springframework.web.multipart.MultipartFile;
 

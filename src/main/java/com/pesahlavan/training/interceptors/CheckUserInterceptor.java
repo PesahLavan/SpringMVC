@@ -1,6 +1,6 @@
-package com.mince.training.interceptors;
+package com.pesahlavan.training.interceptors;
 
-import com.mince.training.objects.User;
+import com.pesahlavan.training.objects.User;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
