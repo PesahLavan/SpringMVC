@@ -58,7 +58,6 @@ public class LoginController {
         String result = "<span style=\"color:%s; font-weight:bold;\">%s</span>";
 
         if (password.length() >= WEAK_STRENGTH & password.length() < FEAR_STRENGTH) {
-            // добавить локализацию
             return String.format(result, WEAK_COLOR, messageSource.getMessage("low",null, locale));
         } else if (password.length() >= FEAR_STRENGTH & password.length() < STRONG_STRENGTH) {
             return String.format(result, FEAR_COLOR, messageSource.getMessage("medium",null, locale));
